@@ -1,4 +1,5 @@
 using MudBlazor.Services;
+using WEbbLIE;
 using WEbbLIE.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ builder.Services.AddMudServices();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddSingleton<ShowcaseService>();
 
 var app = builder.Build();
 

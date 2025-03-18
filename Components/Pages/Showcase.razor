@@ -1,0 +1,43 @@
+﻿@page "/showcase"
+@inject ShowcaseService ShowcaseService
+
+<MudContainer>
+    <MudText Typo="Typo.h4" Class="mb-3">Showcase av tidigare projekt</MudText>
+    <MudText Typo="Typo.h6">Se alla WEbbLIE's tidigare projekt här!</MudText>
+
+    <MudGrid>
+        @if (showcaseSites == null)
+        {
+            <MudProgressCircular Indeterminate="true"/>
+        }
+        else
+        {
+            @foreach (var sites in showcaseSites)
+            {
+                <MudItem xs="12" sm="6" md="4" lg="4">
+                    <MudCard Class="mud-elevation-6">
+                        <MudCardMedia Image="@sites.ImageUrl" Height="150" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h6">@sites.Name</MudText>
+                            <MudText Typo="Typo.body2">@sites.Description</MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Color="Color.Primary" Href="@sites.Url" Target="_blank">
+                                Besök Hemsida
+                            </MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            }
+        }
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private List<Models.ShowcaseSites>? showcaseSites;
+
+    protected override void OnInitialized()
+    {
+        showcaseSites = ShowcaseService.GetSites();
+    }
+}
