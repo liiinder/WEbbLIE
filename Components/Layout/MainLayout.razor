@@ -8,10 +8,10 @@
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
+        <MudText Typo="Typo.h5" Class="ml-3">WEbbLIE</MudText>
         <MudSpacer />
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        @* <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" /> *@
     </MudAppBar>
     <MudDrawer id="nav-drawer" Anchor="Anchor.Start" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu />
@@ -36,6 +36,23 @@
         </div>
     </footer>
 
+    @*
+    <MudPaper Class="py-2 align-center">
+        <MudElement Class="py-2 align-center">
+            <MudText>&copy; 2025 WEbbLIE. All rights reserved.</MudText>
+            <MudLink href="/OmOss">Om oss</MudLink> |
+            <MudLink href="/showcase">Showcase</MudLink> |
+            <MudLink href="/">Home</MudLink>
+            <MudText>
+                Kontakta oss:
+                <MudElement class="email-phone">
+                    <MudLink href="mailto:info@webblie.com">info@webblie.com</MudLink> |
+                    <MudLink href="tel:+46123456789">+46 123 456 789</MudLink>
+                </MudElement>
+            </MudText>
+        </MudElement>
+    </MudPaper>
+    *@
 
 </MudLayout>
 
