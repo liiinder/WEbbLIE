@@ -7,97 +7,124 @@
     <MudPaper Elevation="3" Class="p-4">
         <MudText Typo="Typo.body1">
             Välkommen till WEbbLIE! Vi är en nystartad webbyrå skapad av fyra drivna studenter med en passion för design, utveckling och digital innovation. Vi hjälper företag och entreprenörer att bygga moderna, responsiva och kreativa webbplatser som sticker ut. Med vår kombination av nytänkande och teknisk expertis skapar vi skräddarsydda lösningar som tar din digitala närvaro till nästa nivå.
-
-            Vill du lyfta ditt varumärke online? WEbbLIE är redo att hjälpa dig!
         </MudText>
         <MudText>
-            Här kommer följer en kort presentation av vårt team:
+            Här följer en kort presentation av vårt team:
         </MudText>
-      
     </MudPaper>
 
     <MudGrid Container Class="mt-4">
-    <MudItem Xs="12">
+        @foreach (var member in TeamMembers)
+        {
+            <MudItem Xs="12">
+                <MudCard Class="p-2">
+                    <MudGrid Container Spacing="2">
+                        <MudItem xs="4">
+                            <MudImage Src=@member.Image Alt=@member.Name Height="200" Width="150" />
+                        </MudItem>
+                        <MudItem xs="8">
+                            <MudCardContent>
+                                <MudText Typo="Typo.h5">@member.Name</MudText>
+                                <MudText Typo="Typo.h6">@member.Role</MudText>
+                                <MudText Typo="Typo.body2"><i>@member.Description</i></MudText>
 
+                                <MudButton Color="Color.Primary" Variant="Variant.Text" OnClick="() => ToggleCv(member.Id)">
+                                    @(ExpandedCvs.Contains(member.Id) ? "Visa mindre" : "Läs mer")
+                                </MudButton>
 
-            <MudCard Class="p-2">
-                <MudGrid Container Spacing="2">
-                    <MudItem xs="4">
-                        <MudImage Src="bild1.jpg" Alt="Kristoffer" Height="200" Width="150" />
-                    </MudItem>
-                    <MudItem xs="8">
-                        <MudCardContent>
-                            <MudText Typo="Typo.h5">Kristoffer Linder</MudText>
-                            <MudText Typo="Typo.h6">Scrum Master</MudText>
-                            <MudText Typo="Typo.body2">
-                                "Jag ser till att vårt team arbetar effektivt och smidigt enligt agila principer.
-                                Med fokus på samarbete och ständiga förbättringar hjälper jag till att lösa hinder
-                                och hålla projekten på rätt spår!"
-                            </MudText>
-                        </MudCardContent>
-                    </MudItem>
-                </MudGrid>
-            </MudCard>
+                                <MudCollapse Expanded="@ExpandedCvs.Contains(member.Id)">
+                                    <MudPaper Class="p-3 mt-2">
+                                        <MudText Typo="Typo.body2"><b style="font-size: 1.1em;">Jobberfarenhet:</b></MudText>
+                                        <MudText Typo="Typo.body2">@member.JobExperience</MudText>
 
-    </MudItem>
-    <MudItem Xs="12">
+                                        <MudText Typo="Typo.body2"><b style="font-size: 1.1em;">Utbildning:</b></MudText>
+                                        <MudText Typo="Typo.body2">@member.Education</MudText>
 
-            <MudCard Class="p-2">
-                <MudGrid Container Spacing="2">
-                    <MudItem xs="4">
-                        <MudImage Src="bild2.jpg" Alt="Daniel" Height="200" Width="150" />
-                    </MudItem>
-                    <MudItem xs="8">
-                        <MudCardContent>
-                            <MudText Typo="Typo.h5">Daniel Johansson</MudText>
-                            <MudText Typo="Typo.h6">Projektledare</MudText>
-                            <MudText Typo="Typo.body2">
-                                "Jag älskar att ha koll på helheten!
-                                Genom att planera, prioritera och kommunicera ser jag till
-                                att vi levererar i tid och enligt kundens vision – utan att tumma på kvaliteten."
-                            </MudText>
-                        </MudCardContent>
-                    </MudItem>
-                </MudGrid>
-            </MudCard>
-    </MudItem>
-    <MudItem Xs="12">
-            <MudCard Class="p-2">
-                <MudGrid Container Spacing="2">
-                    <MudItem xs="4">
-                        <MudImage Src="bild3.jpg" Alt="Arvin" Height="200" Width="150" />
-                    </MudItem>
-                    <MudItem xs="8">
-                        <MudCardContent>
-                            <MudText Typo="Typo.h5">Arvin Hedin</MudText>
-                            <MudText Typo="Typo.h6">Backend-specialist</MudText>
-                            <MudText Typo="Typo.body2">"Jag bygger det som inte syns men som får allt att fungera. 
-                                Med säkra databaser, smarta API:er och stabila servrar ser jag till att våra 
-                                lösningar är snabba och pålitliga."
-                            </MudText>
-                        </MudCardContent>
-                    </MudItem>
-                </MudGrid>
-            </MudCard>
-    </MudItem>
-    <MudItem Xs="12">
-        <MudCard Class="p-2">
-                <MudGrid Container Spacing="2">
-                    <MudItem xs="4">
-                        <MudImage Src="bild4.jpg" Alt="Magnus" Height="200" Width="150" />
-                    </MudItem>
-                    <MudItem xs="8">
-                        <MudCardContent>
-                            <MudText Typo="Typo.h5">Magnus Söderholm</MudText>
-                            <MudText Typo="Typo.h6">Frontend-expert</MudText>
-                            <MudText Typo="Typo.body2">"Jag brinner för att skapa vackra och användarvänliga webbupplevelser. 
-                                Med pixelperfekt design och modern kod gör jag idéer till verklighet!"
-                                </MudText>
-                        </MudCardContent>
-                    </MudItem>
-                </MudGrid>
-            </MudCard>
-    </MudItem>
-</MudGrid>
-
+                                        <MudText Typo="Typo.body2"><b style="font-size: 1.1em;">Kompetenser:</b></MudText>
+                                        <MudText Typo="Typo.body2">@member.Skills</MudText>
+                                    </MudPaper>
+                                </MudCollapse>
+                            </MudCardContent>
+                        </MudItem>
+                    </MudGrid>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
 </MudContainer>
+
+@code {
+    private List<int> ExpandedCvs = new();
+
+    private void ToggleCv(int id)
+    {
+        if (ExpandedCvs.Contains(id))
+        {
+            ExpandedCvs.Remove(id);
+        }
+        else
+        {
+            ExpandedCvs.Add(id);
+        }
+    }
+
+    private List<TeamMember> TeamMembers = new()
+    {
+        new TeamMember
+        {
+            Id = 1,
+            Name = "Kristoffer Linder",
+            Role = "Scrum Master",
+            Image = "bild1.jpg",
+            Description = "Jag ser till att vårt team arbetar effektivt och smidigt enligt agila principer. Med fokus på samarbete och ständiga förbättringar hjälper jag till att lösa hinder och hålla projekten på rätt spår!",
+            JobExperience = "Scrum Master på WEbbLIE (2023 - nu)\nProjektledare på XYZ Tech (2020 - 2023)\nAgil Coach på ABC Consulting (2018 - 2020)",
+            Education = "Civilingenjör inom datateknik, KTH (2016 - 2020)\nAgil Projektledning, Coursera (2019)",
+            Skills = "Agil metodik (Scrum, Kanban)\nTeamledning\nKommunikation\nProblemlösning\nJIRA\nTrello"
+        },
+        new TeamMember
+        {
+            Id = 2,
+            Name = "Daniel Johansson",
+            Role = "Projektledare",
+            Image = "bild2.jpg",
+            Description = "Jag älskar att ha koll på helheten! Genom att planera, prioritera och kommunicera ser jag till att vi levererar i tid och enligt kundens vision – utan att tumma på kvaliteten.",
+            JobExperience = "Projektledare på WEbbLIE (2023 - nu)\nKundansvarig på Digital Agency (2019 - 2023)\nAffärsutvecklare på Business Hub (2017 - 2019)",
+            Education = "Ekonomie kandidat, Stockholms Universitet (2014 - 2017)",
+            Skills = "Projektledning\nBudgetering\nAffärsutveckling\nKommunikation\nJIRA\nMS Project"
+        },
+        new TeamMember
+        {
+            Id = 3,
+            Name = "Arvin Hedin",
+            Role = "Backend-specialist",
+            Image = "bild3.jpg",
+            Description = "Jag bygger det som inte syns men som får allt att fungera. Med säkra databaser, smarta API:er och stabila servrar ser jag till att våra lösningar är snabba och pålitliga.",
+            JobExperience = "Backend Developer på WEbbLIE (2023 - nu)\nSystemutvecklare på Tech Solutions (2021 - 2023)\nBackend Developer på StartUp IT (2019 - 2021)",
+            Education = "Systemvetenskap, Uppsala Universitet (2016 - 2019)",
+            Skills = "Backend-utveckling (.NET, Node.js)\nDatabaser (SQL, MongoDB)\nAPI-design (REST, GraphQL)\nDevOps\nAWS\nDocker"
+        },
+        new TeamMember
+        {
+            Id = 4,
+            Name = "Magnus Söderholm",
+            Role = "Frontend-expert",
+            Image = "bild4.jpg",
+            Description = "Jag brinner för att skapa vackra och användarvänliga webbupplevelser. Med pixelperfekt design och modern kod gör jag idéer till verklighet!",
+            JobExperience = "Frontend Developer på WEbbLIE (2023 - nu)\nUI/UX Designer på Creative Designs (2021 - 2023)\nWebbutvecklare på WebTech (2019 - 2021)",
+            Education = "Interaktionsdesign, Umeå Universitet (2016 - 2019)\nWebbutveckling, Chalmers (2015 - 2016)",
+            Skills = "UI/UX Design\nReact\nBlazor\nCSS\nHTML\nJavaScript\nFigma\nTailwind CSS\nResponsiv design"
+        }
+    };
+
+    public class TeamMember
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Role { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
+        public string JobExperience { get; set; }
+        public string Education { get; set; }
+        public string Skills { get; set; }
+    }
+}
